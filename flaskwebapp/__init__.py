@@ -22,7 +22,7 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    # imports test.py blueprints and sets endpoints
+    # imports views.py blueprints and sets endpoints
     from . import views
     app.register_blueprint(views.bp)
     app.add_url_rule('/', endpoint='index')

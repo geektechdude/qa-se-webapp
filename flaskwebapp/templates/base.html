@@ -4,12 +4,12 @@
 <nav>
   <h1>GeekTechStuff Flask</h1>
   <ul>
-    <li><a href="{{ url_for('test.index') }}">Index</a></li>
+    <li><a href="{{ url_for('views.index') }}">Index</a></li>
     {% if g.user %}
     <li><span>{{ g.user['username'] }}</span></li>
     <li><a href="{{ url_for('auth.logout') }}">Log Out</a></li>
     {% else %}
-    <li><a href="{{ url_for('test.register') }}">Register</a></li>
+    <li><a href="{{ url_for('views.register') }}">Register</a></li>
     <li><a href="{{ url_for('auth.login') }}">Login</a></li>
     {% endif %}
   </ul>
