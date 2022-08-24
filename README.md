@@ -1,6 +1,17 @@
 # qa-se-webapp
 Software Engineering &amp; Agile Assignment - Web Application Development. Application written in Python. Any information stored in database is dummy information.
 
+# Introduction
+As part of the Software Engineering & Agile module of my degree I am required to design, develop and test a web database application written in Python. The Python Web Framework can be any (Django, FastAPI, Flask), however I am using Flask.
+
+# Requirements
+The web app has restrictions / requirements as per the brief, these are:
+- It must feature a relational database (e.g. SQL) backend.
+- The database can have a minimum of 2 tables and a maximum of 4 tables.
+- The web application should have 2 types of users: regular and admin.
+- Regular users should be able to carry out CREATE, READ and UPDATE actions on the database via the web app.
+- Admin users should be able to carry out CREATE, READ, UPDATE and DELETE actions on the database via the web app.
+
 Running In DEV Mode - NOTE: Commands are case-sensitive:
 - Clone the repository
 - Open the repository (change to the repository directory)
