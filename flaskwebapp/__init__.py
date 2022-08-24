@@ -23,8 +23,8 @@ def create_app(test_config=None):
         pass
 
     # imports test.py blueprints and sets endpoints
-    from . import test
-    app.register_blueprint(test.bp)
+    from . import views
+    app.register_blueprint(views.bp)
     app.add_url_rule('/', endpoint='index')
 
     # imports database commands / connection
