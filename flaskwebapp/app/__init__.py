@@ -14,8 +14,7 @@ def create_app(config_name):
     db.init_app(app)
 
     # imports views.py blueprints and sets endpoints
-    from .main import views
-    app.register_blueprint(views.bp)
-    app.add_url_rule('/', endpoint='index')
+    from .main import main as main_blueprint
+    app.register_blueprint(main_blueprint)
 
     return app
