@@ -13,8 +13,12 @@ def create_app(config_name):
     # initialise Database
     db.init_app(app)
 
-    # imports views.py blueprints and sets endpoints
+    # imports main views.py blueprints and sets endpoints
     from .main import main as main_blueprint
     app.register_blueprint(main_blueprint)
+
+    # imports auth views.py blueprints and sets endpoints
+    from .auth import auth as auth_blueprint
+    app.register_blueprint(auth_blueprint, url_prefix='/auth')
 
     return app
