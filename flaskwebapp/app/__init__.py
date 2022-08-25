@@ -1,10 +1,13 @@
 from flask import Flask
 from flask_bootstrap import Bootstrap
+from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 from config import config
 
 bootstrap = Bootstrap()
 db = SQLAlchemy()
+login_manager = LoginManager()
+login_manager.login_view = 'auth.logon'
 
 def create_app(config_name):
     # Creates and configures the app
@@ -17,6 +20,9 @@ def create_app(config_name):
     
     # initialise Database
     db.init_app(app)
+
+    # initialise Login Manager
+    login_manager.init_app(app)
 
     # imports main views.py blueprints and sets endpoints
     from .main import main as main_blueprint
