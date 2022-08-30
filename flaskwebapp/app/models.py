@@ -40,7 +40,17 @@ class AnonymousUser(AnonymousUserMixin):
 
 login_manager.anonymous_user = AnonymousUser
 
-
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
+
+class Asset(db.Model):
+    __tablename__ = 'assets'
+    id = db.Column(db.Integer, primary_key=True)
+    serial_number = db.Column(db.String(64), unique=True, index=True)
+    device_model = db.Column(db.String(128))
+    assigned_to = db.Column(db.String(64))
+    assigned_by = db.relationship('User', backref='id', lazy='dynamic')
+
+    def __repr__(self):
+        return '<Asset %r>' % self.serial_number
