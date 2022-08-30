@@ -4,7 +4,8 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'INSERTaSUPERlongAndHardTOGue$$STrinGHEr3!'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    
+    ADMIN_USER = os.environ.get('ADMIN_USER') or 'geek@geektechstuff.com'
+
     @staticmethod
     def init_app(app):
         pass
