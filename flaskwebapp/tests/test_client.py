@@ -21,3 +21,12 @@ class FlaskClientTestCase(unittest.TestCase):
         response = self.client.get('/')
         self.assertEqual(response.status_code, 200)
 
+    def test_auth_register(self):
+        ''' /auth/register loads with a 200 response'''
+        response = self.client.get('/auth/register')
+        self.assertEqual(response.status_code, 200)
+    
+    def test_auth_login(self):
+        ''' /auth/login loads with a 200 response'''
+        response = self.client.get('/auth/login')
+        self.assertEqual(response.status_code, 200)
