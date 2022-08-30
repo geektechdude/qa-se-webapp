@@ -132,3 +132,4 @@ dmypy.json
 qa-se-webapp.code-workspace
 .sqlite
 data.sqlite
+data-TEST.sqlite

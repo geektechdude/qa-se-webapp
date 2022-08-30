@@ -12,8 +12,13 @@ class Config:
 class ProdConfig(Config):
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or 'sqlite:///' + os.path.join(basedir, 'data.sqlite')
 
+class Test(Config):
+    TEST = True
+    SQLALCHEMY_DATABASE_URI = os.environ.get('TEST_DATABASE_URL') or \
+        'sqlite:///' + os.path.join(basedir, 'data-TEST.sqlite')
 
 config = {
     'production': ProdConfig,
-    'default': ProdConfig
+    'default': ProdConfig,
+    'test': Test
 }
