@@ -130,3 +130,5 @@ dmypy.json
 
 .DS_Store
 qa-se-webapp.code-workspace
+.sqlite
+data.sqlite

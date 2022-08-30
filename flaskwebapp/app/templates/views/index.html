@@ -10,10 +10,4 @@
   <b> Please note, this is a dummy / test system. No live or real data is in the system.</b></p>
   <br>
 
- {% if g.user %}
-    <p>ASSETS SHOW HERE </p>
-    {% else %}
-    <p>Please <a href="{{ url_for('auth.login') }}">Login</a> or <a href="{{ url_for('test.register') }}">Register</a> to use this site.</p>
- {% endif %}
-
 {% endblock %}
