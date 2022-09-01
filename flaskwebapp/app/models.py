@@ -10,6 +10,7 @@ class User(UserMixin,db.Model):
     password_hash = db.Column(db.String(128))
     email = db.Column(db.String(64), unique=True, index=True)
     is_admin = db.Column(db.Boolean, default=False)
+    assets = db.relationship('Asset', backref='assigned_by_user_id')
 
     def __init__(self, **kwargs):
         super(User, self).__init__(**kwargs)
@@ -50,7 +51,7 @@ class Asset(db.Model):
     serial_number = db.Column(db.String(64), unique=True, index=True)
     device_model = db.Column(db.String(128))
     assigned_to = db.Column(db.String(64))
-    assigned_by = db.relationship('User', backref='id', lazy='dynamic')
+    assigned_by = db.Column(db.Integer, db.ForeignKey("users.id"))
 
     def __repr__(self):
         return '<Asset %r>' % self.serial_number
