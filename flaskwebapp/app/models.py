@@ -10,6 +10,7 @@ class User(UserMixin,db.Model):
     password_hash = db.Column(db.String(128))
     email = db.Column(db.String(64), unique=True, index=True)
     is_admin = db.Column(db.Boolean, default=False)
+    assets = db.relationship('Asset', backref='assigned_by_user_id')
 
     def __init__(self, **kwargs):
         super(User, self).__init__(**kwargs)
@@ -40,7 +41,17 @@ class AnonymousUser(AnonymousUserMixin):
 
 login_manager.anonymous_user = AnonymousUser
 
-
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
+
+class Asset(db.Model):
+    __tablename__ = 'assets'
+    id = db.Column(db.Integer, primary_key=True)
+    serial_number = db.Column(db.String(64), unique=True, index=True)
+    device_model = db.Column(db.String(128))
+    assigned_to = db.Column(db.String(64))
+    assigned_by = db.Column(db.Integer, db.ForeignKey("users.id"))
+
+    def __repr__(self):
+        return '<Asset %r>' % self.serial_number
