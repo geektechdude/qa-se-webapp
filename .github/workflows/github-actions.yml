@@ -1,8 +1,6 @@
 name: Flask App Tests
 
-on:
-  push:
-    branches: [ $default-branch ]
+on: [push]
 
 jobs:
   build:
@@ -27,3 +25,5 @@ jobs:
         cd flaskwebapp
         export FLASK_APP=assets.py
         flask test
+    - name: Echo Completed
+      run: echo "Actions Completed"
