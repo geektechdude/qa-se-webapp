@@ -18,6 +18,11 @@ Running In DEV Mode - NOTE: Commands are case-sensitive:
 - Create a Virtual Environment using the command "python3 -m venv ./venv"
 - Activate the Virtual Environment using the command "source ./venv/bin/activate"
 - Install the required Python modules using the command "pip install -r requirements.txt"
-- Set the FLASK_APP environment variable using the command "export FLASK_APP=flaskwebapp.__init__.py"
-- Initialise database using command "flask init-db"
+- Set the FLASK_APP environment variable using the command "export FLASK_APP=assets.py"
+- Change to the flaskwebapp directory
+- Initialise database using command "flask db init"
+- Migrate any database changges using command "flask db migrate"
+- Upgrade database using command "flask db upgrade"
 - Run the Flask app using the command "flask run"
+OR
+- Run the unit tests using the command "flask test"
