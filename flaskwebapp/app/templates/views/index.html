@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
 
 {% block header %}
   <h1>{% block title %}Welcome to the Asset App{% endblock %}</h1>
@@ -9,5 +10,9 @@
   <br> 
   <b> Please note, this is a dummy / test system. No live or real data is in the system.</b></p>
   <br>
-
+  {% if current_user.is_authenticated %}
+    {{ wtf.quick_form(form) }}
+  {% endif %} 
 {% endblock %}
+
+
