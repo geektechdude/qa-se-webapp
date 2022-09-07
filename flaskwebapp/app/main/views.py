@@ -1,13 +1,17 @@
 from flask import render_template, redirect, request, url_for, flash
 from flask_login import login_required, current_user
-from .forms import AddAsset
+from .forms import AddAsset, SearchAsset
+from .tables import Results
 from . import main
 from .. import db
 from ..models import Asset
 
-@main.route('/', methods=['GET'])
+@main.route('/', methods=['GET', 'POST'])
 def index():
-    return render_template('views/index.html')
+    search = SearchAsset(request.form)
+    if request.method == 'POST':
+        return search_results(search)
+    return render_template('views/index.html', form=search)
 
 @main.route('/asset/add', methods=['GET','POST'])
 @login_required
@@ -23,3 +27,21 @@ def add_asset():
         flash('Asset Added')
         return redirect(url_for('main.index'))
     return render_template('views/add_asset.html',form=form)
+
+@main.route('/asset/results', methods=['GET'])
+@login_required
+def search_results(search):
+    search_result = []
+    search_string = search.data['search_criteria']
+    search_query = db.session.query(Asset).filter(Asset.serial_number.contains(search_string))
+    search_result = search_query.all()
+
+    if not search_result:
+        # Display a warning message if serial number not found
+        flash('No results found. Please try a different Serial Number')
+        return redirect('/')
+    else:
+        # Return results via the results template
+        table = Results(search_result)
+        table.border = True
+        return render_template('views/results_asset.html', table=table)
