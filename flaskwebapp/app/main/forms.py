@@ -34,6 +34,11 @@ class SearchAsset(FlaskForm):
     submit = SubmitField('Serial Number Search')
 
 class EditAsset(FlaskForm):
+    serial_number = StringField('serial_number', validators=[
+        DataRequired(), Length(1, 12),
+        Regexp('^[A-Za-z][A-Za-z0-9_.]*$', 0,
+               'Serial Number must have only letters, numbers, dots or '
+               'underscores')])
     device_model = StringField('device_model', validators=[
         DataRequired(), Length(1, 12),
         Regexp('^[A-Za-z][A-Za-z0-9_.]*$', 0,

@@ -50,17 +50,18 @@ def search_results(search):
 @login_required
 def edit(id):
     asset = Asset.query.filter_by(id=id).first_or_404()
-    form = EditAsset()
+    form = EditAsset(id=id)
     if form.validate_on_submit():
-        asset = Asset(device_model = form.device_model.data,
-                    assigned_to = form.assigned_to.data,
-                    assigned_by = current_user.id)
+        asset.serial_number = form.serial_number.data
+        asset.device_model = form.device_model.data
+        asset.assigned_to = form.assigned_to.data
         db.session.add(asset)
         db.session.commit()
         flash('Asset Updated')
         return redirect(url_for('main.index'))
+    form.serial_number.data = asset.serial_number
     form.device_model.data = asset.device_model
     form.assigned_to.data = asset.assigned_to
-    return render_template('views/edit_asset.html',form=form)
+    return render_template('views/edit_asset.html',form=form,id=id)
     
 
