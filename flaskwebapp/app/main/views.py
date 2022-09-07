@@ -1,6 +1,6 @@
 from flask import render_template, redirect, request, url_for, flash
 from flask_login import login_required, current_user
-from .forms import AddAsset, SearchAsset
+from .forms import AddAsset, SearchAsset, EditAsset
 from .tables import Results
 from . import main
 from .. import db
@@ -45,3 +45,23 @@ def search_results(search):
         table = Results(search_result)
         table.border = True
         return render_template('views/results_asset.html', table=table)
+
+@main.route('/asset/<int:id>', methods=['GET','POST'])
+@login_required
+def edit(id):
+    asset = Asset.query.filter_by(id=id).first_or_404()
+    form = EditAsset(id=id)
+    if form.validate_on_submit():
+        asset.serial_number = form.serial_number.data
+        asset.device_model = form.device_model.data
+        asset.assigned_to = form.assigned_to.data
+        db.session.add(asset)
+        db.session.commit()
+        flash('Asset Updated')
+        return redirect(url_for('main.index'))
+    form.serial_number.data = asset.serial_number
+    form.device_model.data = asset.device_model
+    form.assigned_to.data = asset.assigned_to
+    return render_template('views/edit_asset.html',form=form,id=id)
+    
+
