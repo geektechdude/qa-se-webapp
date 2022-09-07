@@ -10,4 +10,12 @@
 <div class="col-md-4">
     {{ wtf.quick_form(form) }}
 </div>
+
+<div class="col-md-4">
+    <form method="POST"
+        action="{{ url_for('main.delete_asset', id=id) }}">
+        <input type="submit" value="Delete Asset"
+            onclick="return confirm('Are you sure you want to delete this entry?')">
+    </form>
+</div>
 {% endblock %}
