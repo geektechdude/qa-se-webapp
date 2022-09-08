@@ -63,5 +63,13 @@ def edit(id):
     form.device_model.data = asset.device_model
     form.assigned_to.data = asset.assigned_to
     return render_template('views/edit_asset.html',form=form,id=id)
+
+@main.route('/asset/<int:id>/delete', methods=['POST'])
+def delete_asset(id):
+    asset = Asset.query.get_or_404(id)
+    db.session.delete(asset)
+    db.session.commit()
+    flash('Asset Deleted')
+    return redirect(url_for('main.index'))
     
 
