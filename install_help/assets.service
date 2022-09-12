@@ -1,0 +1,12 @@
+[Unit]
+Description=Gunicorn instance to server assets
+After=network.target
+
+[Service]
+User=azureuser
+WorkingDirectory=/home/azureuser/qa-se-webapp/flaskwebapp
+ExecStart=/home/azureuser/qa-se-webapp/venv/bin/gunicorn -b localhost:8000 -w 2 assets:app
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

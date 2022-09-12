@@ -1,0 +1,12 @@
+server {
+    server_name                 PLACE_HOST_NAME_HERE;
+    listen                      80;
+  
+    access_log    /var/log/nginx/assets.access.log;
+    error_log     /var/log/nginx/assets.error.log;
+
+    location / {
+        proxy_pass              http://localhost:8000;
+        proxy_set_header        Host $host;
+    }
+}
