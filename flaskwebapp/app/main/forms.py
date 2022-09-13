@@ -26,7 +26,7 @@ class AddAsset(FlaskForm):
             raise ValidationError('Serial Number already exists.')
 
 class SearchAsset(FlaskForm):
-    search_criteria = StringField('serial_number', validators=[
+    search_criteria = StringField('Serial Number:', validators=[
         DataRequired(), Length(1, 12),
         Regexp('^[A-Za-z][A-Za-z0-9_.]*$', 0,
                'Serial Number must have only letters, numbers, dots or '
