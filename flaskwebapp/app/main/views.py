@@ -71,5 +71,11 @@ def delete_asset(id):
     db.session.commit()
     flash('Asset Deleted')
     return redirect(url_for('main.index'))
+
+@main.route('/asset/all_assets', methods=['GET'])
+@login_required
+def list_all_assets():
+    all_assets = Asset.query.all()
+    return render_template('views/all_assets.html', all_assets=all_assets)
     
 

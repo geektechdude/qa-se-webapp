@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Assets - View All Assets{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+    <h1>Viewing Assets</h1>
+</div>
+<div>
+    <table>
+        <tr>
+            <th scope = "col">Asset ID   .</th>
+            <th scope = "col">Asset Serial Number   .</th>
+            <th scope = "col">Asset Device Model   .</th>
+            <th scope = "col">Asset Assigned To   .</th>
+            <th scope = "col">Edit Asset   .</th>
+        </tr>
+        {% for asset in all_assets %}
+            <tr>
+                <td>{{asset.id}}</td>
+                <td>{{asset.serial_number}}</td>
+                <td>{{asset.device_model}}</td>
+                <td>{{asset.assigned_to}}</td>
+                <td><a href="{{ url_for('main.edit', id=asset.id) }}"">Edit</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}
