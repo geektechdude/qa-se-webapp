@@ -53,8 +53,8 @@ def change_password():
             current_user.password = form.password.data
             db.session.add(current_user)
             db.session.commit()
-            flash('Your password has been updated.')
+            flash('Password has been updated.')
             return redirect(url_for('main.index'))
         else:
-            flash('Invalid password.')
+            flash('Invalid password. Please try again')
     return render_template("auth/password.html", form=form)

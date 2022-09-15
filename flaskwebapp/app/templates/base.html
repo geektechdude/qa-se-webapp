@@ -24,7 +24,7 @@
           <ul class="nav navbar-nav">
 
           {% if current_user.is_authenticated %}
-          <li>{{ current_user.username }}</li>
+          <li><a href="{{ url_for('auth.change_password') }}">{{ current_user.username }}</a></li>
           <li><a href="{{ url_for('main.add_asset') }}">Add Asset</a></li>
           <li><a href="{{ url_for('main.list_all_assets') }}">View All Assets</a></li>
           <li><a href="{{ url_for('auth.logout') }}">Log Out</a></li>
