@@ -8,10 +8,11 @@ from ..models import Asset
 
 @main.route('/', methods=['GET', 'POST'])
 def index():
+    number_of_assets = db.session.query(Asset).count()
     search = SearchAsset(request.form)
     if request.method == 'POST':
         return search_results(search)
-    return render_template('views/index.html', form=search)
+    return render_template('views/index.html', form=search, number_of_assets=number_of_assets)
 
 @main.route('/asset/add', methods=['GET','POST'])
 @login_required

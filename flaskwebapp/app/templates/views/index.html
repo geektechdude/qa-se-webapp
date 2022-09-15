@@ -2,17 +2,32 @@
 {% import "bootstrap/wtf.html" as wtf %}
 
 {% block header %}
-  <h1>{% block title %}Welcome to the Asset App{% endblock %}</h1>
+  {% block title %}Asset App{% endblock %}
 {% endblock %}
 
 {% block page_content %}
-  <p>This is a Python Flask web application to help keep track of who an IT asset has been assigned to.
-  <br> 
-  <b> Please note, this is a dummy / test system. No live or real data is in the system.</b></p>
-  <br>
+  <div class="page-header">
+    <h1>Asset App</h1>
+  </div>
+
+  <div class="col-md-4">
+    This is a Python Flask web application to help keep track of who an IT asset has been assigned to.
+    <br>
+    <br>
+    <b> Please note, this is a dummy / test system. No live or real data is in the system.</b>
+  </div>
+
   {% if current_user.is_authenticated %}
-    {{ wtf.quick_form(form) }}
+    <div class="col-md-4">
+      Search for an asset by serial number, or partial serial number.
+        {{ wtf.quick_form(form) }}
+    </div>
+
+    <div class="col-md-4">
+      Currently this system has details about {{ number_of_assets }} assets.
+    </div>
   {% endif %} 
+
 {% endblock %}
 
 
