@@ -16,8 +16,8 @@ class AddAsset(FlaskForm):
                'Device Model must have only letters, numbers, dots or '
                'underscores')])
     assigned_to = StringField('assigned_to', validators=[
-        DataRequired(), Length(1, 12), Regexp('^[A-Za-z][A-Za-z0-9_.]*$', 0,
-               'Assigned To must have only letters, numbers, dots or '
+        DataRequired(), Length(1, 12), Regexp('^[A-Za-z][A-Za-z0-9_.\s]*$', 0,
+               'Assigned To must have only letters, numbers, dots, spaces or '
                'underscores')])
     submit = SubmitField('Assign Device')
 
@@ -45,7 +45,7 @@ class EditAsset(FlaskForm):
                'Device Model must have only letters, numbers, dots or '
                'underscores')])
     assigned_to = StringField('assigned_to', validators=[
-        DataRequired(), Length(1, 12), Regexp('^[A-Za-z][A-Za-z0-9_.]*$', 0,
-               'Assigned To must have only letters, numbers, dots or '
+        DataRequired(), Length(1, 12), Regexp('^[A-Za-z][A-Za-z0-9_.\s]*$', 0,
+               'Assigned To must have only letters, numbers, dots, spaces or '
                'underscores')])
     submit = SubmitField('Update Asset')
