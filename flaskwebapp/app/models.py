@@ -3,7 +3,8 @@ from flask_login import UserMixin, AnonymousUserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db, login_manager
 
-class User(UserMixin,db.Model):
+
+class User(UserMixin, db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), unique=True, index=True)
@@ -31,6 +32,7 @@ class User(UserMixin,db.Model):
     def __repr__(self):
         return '<User %r>' % self.username
 
+
 # Anonymous User and User Loader required or LoginManager causes a 500 error
 class AnonymousUser(AnonymousUserMixin):
     def can(self, permissions):
@@ -39,11 +41,14 @@ class AnonymousUser(AnonymousUserMixin):
     def is_admin(self):
         return False
 
+
 login_manager.anonymous_user = AnonymousUser
+
 
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
+
 
 class Asset(db.Model):
     __tablename__ = 'assets'

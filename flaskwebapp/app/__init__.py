@@ -9,6 +9,7 @@ db = SQLAlchemy()
 login_manager = LoginManager()
 login_manager.login_view = 'auth.logon'
 
+
 def create_app(config_name):
     # Creates and configures the app
     app = Flask(__name__)
@@ -17,7 +18,7 @@ def create_app(config_name):
 
     # initialise Bootstrap
     bootstrap.init_app(app)
-    
+
     # initialise Database
     db.init_app(app)
 

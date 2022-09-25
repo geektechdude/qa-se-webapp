@@ -1,5 +1,6 @@
 from flask_table import Table, Col, LinkCol
 
+
 class Results(Table):
     id = Col('id')
     serial_number = Col('Serial Number')
