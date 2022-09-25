@@ -6,6 +6,7 @@ from .. import db
 from ..models import User
 from .forms import LoginForm, RegistrationForm, ChangePasswordForm
 
+
 # User Login Route
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
@@ -21,6 +22,7 @@ def login():
         flash('Invalid email or password')
     return render_template('auth/login.html', form=form)
 
+
 # User Logout Route
 @auth.route('/logout')
 @login_required
@@ -28,6 +30,7 @@ def logout():
     logout_user()
     flash('You have been logged out.')
     return redirect(url_for('main.index'))
+
 
 # User Registration
 @auth.route('/register', methods=['GET', 'POST'])
@@ -42,6 +45,7 @@ def register():
         flash('Thank you for registering for the site')
         return redirect(url_for('auth.login'))
     return render_template('auth/register.html', form=form)
+
 
 # User Password Change
 @auth.route('/password', methods=['GET', 'POST'])
