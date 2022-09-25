@@ -27,6 +27,7 @@
           <li><a href="{{ url_for('auth.change_password') }}">{{ current_user.username }}</a></li>
           <li><a href="{{ url_for('main.add_asset') }}">Add Asset</a></li>
           <li><a href="{{ url_for('main.list_all_assets') }}">View All Assets</a></li>
+          <li><a href="{{ url_for('main.list_all_users') }}">Users</a></li>
           <li><a href="{{ url_for('auth.logout') }}">Log Out</a></li>
         
           {% else %}

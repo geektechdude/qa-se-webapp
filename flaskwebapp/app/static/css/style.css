@@ -84,3 +84,11 @@ nav ul li a, nav ul li span, header .action {
     min-height: 12em; 
     resize: vertical; 
 }
+td {
+    text-align: center;
+    padding: 10px;
+  }
+th {
+    text-align: center;
+    padding: 10px;
+}

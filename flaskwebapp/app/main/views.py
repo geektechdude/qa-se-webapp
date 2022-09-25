@@ -4,7 +4,7 @@ from .forms import AddAsset, SearchAsset, EditAsset
 from .tables import Results
 from . import main
 from .. import db
-from ..models import Asset
+from ..models import Asset, User
 
 @main.route('/', methods=['GET', 'POST'])
 def index():
@@ -79,4 +79,8 @@ def list_all_assets():
     all_assets = Asset.query.all()
     return render_template('views/all_assets.html', all_assets=all_assets)
     
-
+@main.route('/users/list_users', methods=['GET'])
+@login_required
+def list_all_users():
+    all_users = User.query.all()
+    return render_template('views/edit_users.html', all_users=all_users)
