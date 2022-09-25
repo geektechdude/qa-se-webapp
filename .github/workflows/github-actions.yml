@@ -25,5 +25,8 @@ jobs:
         cd flaskwebapp
         export FLASK_APP=assets.py
         flask test
+    - name: Run Flake8 Check
+      run: |
+        flake8
     - name: Echo Completed
       run: echo "Actions Completed"
