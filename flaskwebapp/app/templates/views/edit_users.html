@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Assets - Users{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+    <h1>Users</h1>
+</div>
+<div>
+    {% if current_user.is_admin is sameas true %}
+        <table>
+            <tr>
+                <th scope = "col">User ID  </th>
+                <th scope = "col">User Username   </th>
+                <th scope = "col">User e-Mail   </th>
+                <th scope = "col">Administrator   </th>
+            </tr>
+            {% for user in all_users %}
+                <tr>
+                    <td>{{user.id}}</td>
+                    <td>{{user.username}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.is_admin}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+    {% if current_user.is_admin is sameas false %}
+        This page is only for administrators of the Asset web application.
+    {% endif %}
+</div>
+{% endblock %}
